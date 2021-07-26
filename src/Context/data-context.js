@@ -9,8 +9,8 @@ const DataContext = createContext({
 export const DataContextProvider = ({ children }) => {
   const [userList, setUserList] = useState([{      
     "name": 'Ivy Nozaki',
-    "email": 'ivy@goosebanking.com',
-    "password": 'geeseftw',
+    "email": 'ivy@gb.com',
+    "password": 'gb',
     "balance": 500
   }]);
   
