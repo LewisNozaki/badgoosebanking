@@ -33,7 +33,7 @@ const Login = ({ setBalance, userStatus, setUserName }) => {
     setPassword(e.target.value);
     setIsValid(true);
   }
-  
+
   const handleLogin = (e) => {
     e.preventDefault();
     if (username === '') {
@@ -58,8 +58,6 @@ const Login = ({ setBalance, userStatus, setUserName }) => {
       setUsername('');
       setPassword('');
     }
-
-
   }
 
   return (

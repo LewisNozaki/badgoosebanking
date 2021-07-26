@@ -8,7 +8,7 @@ function Home ( props ) {
   const handleLogout = () => {
     props.logout();
   }
-
+  
   return (
     <>
       {!props.isUser && <Card className="homepage">
@@ -18,6 +18,12 @@ function Home ( props ) {
         <Link to="/CreateAccount/">
           <button>
             Join The Flock
+          </button>
+        </Link>
+
+        <Link to="/Login/">
+          <button>
+            Login
           </button>
         </Link>
       </Card>}
