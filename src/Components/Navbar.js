@@ -18,7 +18,9 @@ const Navbar = ({
   setUserName,
   updateBalance,
   setUserStatus,
-  logout }) => {
+  logout,
+  getUsername
+  }) => {
   return (
     <HashRouter>
       <div className="nav-bar">
@@ -29,7 +31,7 @@ const Navbar = ({
             Goose Banking
           </h1>
         </div>
-
+        
         <div className="links-container">
           <Link to="/">
             Home
@@ -63,6 +65,7 @@ const Navbar = ({
             component={() => <Login userStatus={setUserStatus} 
             setUserName={setUserName}
             setBalance={setBalance}
+            getUsername={getUsername}
             />}
           />
           <Route path="/CreateAccount/" 

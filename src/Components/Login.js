@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useHistory } from 'react-router-dom';
 import DataContext from '../Context/data-context';
 
-const Login = ({ setBalance, userStatus, setUserName }) => {
+const Login = ({ setBalance, userStatus, setUserName, getUsername }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isValid, setIsValid] = useState(false);
@@ -12,7 +12,7 @@ const Login = ({ setBalance, userStatus, setUserName }) => {
   const [userBal, setUserBal] = useState(0);
   
   const ctx = useContext(DataContext);
-
+  
   const history = useHistory();
 
   useEffect(() => {
@@ -51,6 +51,7 @@ const Login = ({ setBalance, userStatus, setUserName }) => {
         setUserName('Ivy');
         setValidLogin(true);
         setBalance(userBal);
+        getUsername(username);
         alert('Welcome back!')
         history.push('/')
     } else {

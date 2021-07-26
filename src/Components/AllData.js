@@ -31,7 +31,6 @@ const AllData = () => {
         })}
         </tbody>
       </Table>
-      {console.log(ctx.users)}
     </Card>
   );
 }

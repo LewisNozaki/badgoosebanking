@@ -11,7 +11,7 @@ export const DataContextProvider = ({ children }) => {
     "name": 'Ivy Nozaki',
     "email": 'ivy@gb.com',
     "password": 'gb',
-    "balance": 500
+    "balance": 100
   }]);
   
   const saveUserHandler = (name, email, password, balance) => {
@@ -21,15 +21,22 @@ export const DataContextProvider = ({ children }) => {
       "password": password,
       "balance": balance
     };
+    
     setUserList(prevState => [...prevState, newUser]);
   }
 
-  const updateCtxBalance = (bal) => {
-    console.log(bal);
-    // let updatedUser = {...userList[0], "balance": bal}
-    // setUserList([updatedUser]);
+  const updateCtxBalance = (bal, username) => {
+    setUserList(prevState => {
+      for (let i = 0; i < prevState.length; i++) {
+        if (prevState[i].email === username) {
+          prevState[i].balance = bal;
+        }
+      }
+
+      return prevState;
+    })
   }
-  
+
   let myValue = {
     saveUserInfo: saveUserHandler,
     users: userList,

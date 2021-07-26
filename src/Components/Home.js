@@ -31,7 +31,7 @@ function Home ( props ) {
       {props.isUser && <Card className="homepage user-home">
         <h1>Welcome {props.userName}!</h1>
         <h2>lorem ipsum </h2>
-
+        
         <h3> Current Account Balance ${props.currentBalance}</h3>
 
         <Link to="/Deposit/">

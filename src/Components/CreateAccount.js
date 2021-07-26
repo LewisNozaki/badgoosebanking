@@ -12,14 +12,11 @@ function CreateAccount( props ) {
   const [password, setPassword] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const [isValid, setIsValid] = useState(false);
-  // const [success, setSuccess] = useState(false);
   
   const ctx = useContext(DataContext);
-  
-  // let history = useHistory();
 
   const handleSubmit = () => {
-    if (firstName === "" ) {
+    if (firstName === "") {
       alert("Error: First name field required.");
       return
     } else if (firstName[0] !== firstName[0].toUpperCase()) {
@@ -27,7 +24,7 @@ function CreateAccount( props ) {
       return;
     }
 
-    if (lastName === "" ) {
+    if (lastName === "") {
       alert("Error: Last name field required.");
       return;
     }  else if (lastName[0] !== lastName[0].toUpperCase()) {
@@ -35,7 +32,7 @@ function CreateAccount( props ) {
       return;
     }
 
-    if (email === "" ) {
+    if (email === "") {
       alert("Error: Email field required.");
       return;
     }
@@ -50,7 +47,7 @@ function CreateAccount( props ) {
       return;
     }
     
-    if (password.length < 8 ) {
+    if (password.length < 8) {
       alert("Error: Password must contain at least 8 characters.");
       setPassword("");
     } else {
@@ -59,7 +56,6 @@ function CreateAccount( props ) {
       let fullName = firstName + " " + lastName;
       ctx.saveUserInfo(fullName, email, password, 0);
       alert('Success! Your account has been created.');
-      // history.push("/CreateAccount/");
     }
   }
   
@@ -87,7 +83,7 @@ function CreateAccount( props ) {
     setIsChecked(true);
     setIsValid(true);
   }
-
+  
   return (
     <div className="create-account">
       <h1 className="join-us">Join the Flock</h1>
@@ -97,9 +93,9 @@ function CreateAccount( props ) {
           className="createacc-form"
           onSubmit={handleSubmit}
         >
-          {props.isUser && <div>
-            {/* <h2 className="success-msg">Success! Account has been created.</h2> */}
-            <p>If you would like to add another account, complete form again.</p> 
+          {props.isUser && 
+            <div>
+              <p>If you would like to add another account, complete form again.</p> 
             </div>}
           <label className="name-label">Name</label>
           <div className="name-input-container">
@@ -167,7 +163,7 @@ function CreateAccount( props ) {
           </button>
 
         </form>
-
+        
         <h3>Already have an account?
           <Link to="/Login/">
             <button>
