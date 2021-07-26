@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Withdraw.css';
+import DataContext from '../Context/data-context';
 
-function Withdraw( props ) {
+function Withdraw({ balance }) {
   const [withdrawal, setWithdrawal] = useState(0);
   const [isValid, setIsValid] = useState(false);
 
-  let status = `Account Balance $ ${props.currentBalance}`;
+  const ctx = useContext(DataContext);
+
+  let status = `Account Balance $ ${balance}`;
 
   const handleChange = e => {
     setIsValid(true);
@@ -21,7 +24,7 @@ function Withdraw( props ) {
       setIsValid(false);
       return;
     }
-
+    
     if (withdrawal < 0) {
       alert("Error: Withdrawals must be made in positive quantities.");
       setWithdrawal(0);
@@ -29,10 +32,10 @@ function Withdraw( props ) {
       return;
     }
 
-    if (withdrawal > props.currentBalance - 5) {
+    if (withdrawal > balance - 5) {
       alert("Account must have a minimum balance of $5.00")
     } else {
-      props.updateBalance(withdrawal, "MINUS")
+      ctx.updateCtxBalance(withdrawal, "MINUS");
     }
     e.preventDefault();
   };

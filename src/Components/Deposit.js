@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Deposit.css';
+import DataContext from '../Context/data-context';
 
-function Deposit( props ) {
+function Deposit({ balance }) {
   const [deposit, setDeposit] = useState(0);
   const [isValid, setIsValid] = useState(false);
+
+  const ctx = useContext(DataContext);
   
-  let status = `Account Balance $ ${props.currentBalance}`;
+  let status = `Account Balance $ ${balance}`;
   
   const handleChange = e => {
     setIsValid(true);
@@ -29,7 +32,7 @@ function Deposit( props ) {
       return;
     }
 
-    props.updateBalance(deposit, "ADD");
+    ctx.updateCtxBalance(deposit, "ADD");
     e.preventDefault();
   };
 

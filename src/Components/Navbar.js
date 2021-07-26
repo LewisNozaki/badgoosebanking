@@ -11,16 +11,12 @@ import "./Navbar.css";
 
 const Navbar = ({
   isUser,
-  setIsUser,
-  balance,
-  setBalance,
-  userName,
-  setUserName,
-  updateBalance,
-  setUserStatus,
+  username,
+  updateUserStatus,
   logout,
-  getUsername
+  balance
   }) => {
+  
   return (
     <HashRouter>
       <div className="nav-bar">
@@ -47,44 +43,52 @@ const Navbar = ({
           </Link>}
           {isUser && <Link to="/Withdraw/">
             Withdraw
-          </Link> }
+          </Link>}
           <Link to="/AllData/">
             All Data
           </Link>
         </div>
       </div>
 
-        <div className="route-path">
-          <Route path="/" exact
-            component={() => <Home isUser={isUser} 
-            userName={userName}
-            logout={logout}
-            currentBalance={balance} />}
-          />
-          <Route path="/Login/" 
-            component={() => <Login userStatus={setUserStatus} 
-            setUserName={setUserName}
-            setBalance={setBalance}
-            getUsername={getUsername}
+      <div className="route-path">
+        <Route path="/" exact
+          component={() => 
+            <Home 
+              isUser={isUser} 
+              username={username}
+              logout={logout}
+              balance={balance} 
             />}
-          />
-          <Route path="/CreateAccount/" 
-            component={() => <CreateAccount userStatus={setUserStatus} 
-            setUserName={setUserName}
-            isUser={isUser} />}
-          />
-          <Route path="/Deposit/"
-            component={() => <Deposit currentBalance={balance}
-            updateBalance={updateBalance} />}
-          />
-          <Route path="/Withdraw/"      
-            component={() => <Withdraw currentBalance={balance}
-            updateBalance={updateBalance} />}
-          />
-          <Route path="/AllData/" 
-            component={AllData}
-          />
-        </div>
+        />
+        <Route path="/Login/" 
+          component={() => 
+            <Login 
+              updateUserStatus={updateUserStatus}
+          />}
+        />
+        <Route path="/CreateAccount/" 
+          component={() => 
+            <CreateAccount 
+              updateUserStatus={updateUserStatus} 
+              isUser={isUser} 
+            />}
+        />
+        <Route path="/Deposit/"
+          component={() => 
+            <Deposit 
+              balance={balance}
+            />}
+        />
+        <Route path="/Withdraw/"      
+          component={() => 
+            <Withdraw 
+              balance={balance}
+            />}
+        />
+        <Route path="/AllData/" 
+          component={AllData}
+        />
+      </div>
     </HashRouter>
   )
 }

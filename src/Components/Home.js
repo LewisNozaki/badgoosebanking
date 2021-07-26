@@ -4,14 +4,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Home.css';
 import { Link } from 'react-router-dom';
 
-function Home ( props ) {
+function Home ({ isUser, username, balance, logout }) {
   const handleLogout = () => {
-    props.logout();
+    logout();
   }
   
   return (
     <>
-      {!props.isUser && <Card className="homepage">
+      {!isUser && <Card className="homepage">
         <h1>Welcome to Goose Banking</h1>
         <h2>Here at Goose Banking, we take your money as seriously as geese take on their territory. We offer a wide array of banking services for every  need along with 24/7 customer service. Your growth is our growth so join our flock today!</h2>
 
@@ -20,7 +20,7 @@ function Home ( props ) {
             Join The Flock
           </button>
         </Link>
-
+        
         <Link to="/Login/">
           <button>
             Login
@@ -28,11 +28,11 @@ function Home ( props ) {
         </Link>
       </Card>}
 
-      {props.isUser && <Card className="homepage user-home">
-        <h1>Welcome {props.userName}!</h1>
+      {isUser && <Card className="homepage user-home">
+        <h1>Welcome {username}!</h1>
         <h2>lorem ipsum </h2>
         
-        <h3> Current Account Balance ${props.currentBalance}</h3>
+        <h3> Current Account Balance: ${balance}</h3>
 
         <Link to="/Deposit/">
           <button>

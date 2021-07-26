@@ -4,6 +4,8 @@ const DataContext = createContext({
   saveUserInfo: () => {},
   users: [],
   updateCtxBalance: () => {},
+  currentUser: {},
+  updateCurrUser: () => {}
 });
 
 export const DataContextProvider = ({ children }) => {
@@ -13,6 +15,7 @@ export const DataContextProvider = ({ children }) => {
     "password": 'gb',
     "balance": 100
   }]);
+  const [currUser, setCurrUser] = useState("");
   
   const saveUserHandler = (name, email, password, balance) => {
     let newUser = {
@@ -21,26 +24,53 @@ export const DataContextProvider = ({ children }) => {
       "password": password,
       "balance": balance
     };
-    
+
     setUserList(prevState => [...prevState, newUser]);
+    setCurrUser(newUser);
   }
 
-  const updateCtxBalance = (bal, username) => {
-    setUserList(prevState => {
-      for (let i = 0; i < prevState.length; i++) {
-        if (prevState[i].email === username) {
-          prevState[i].balance = bal;
-        }
-      }
+  const updateCtxBalance = (num, calc) => {
+    let newBal = 0;
 
-      return prevState;
+    if (calc === "ADD") {
+      setUserList(prevState => {
+        for (let i = 0; i < prevState.length; i++) {
+          if (prevState[i].email === currUser.email) {
+            newBal = parseInt(prevState[i].balance) + parseInt(num);
+            prevState[i].balance = newBal
+          }
+        }
+        return prevState;
+      })
+    } else if(calc === "MINUS") {
+      setUserList(prevState => {
+        for (let i = 0; i < prevState.length; i++) {
+          if (prevState[i].email === currUser.email) {
+            newBal = parseInt(prevState[i].balance) - parseInt(num)
+            prevState[i].balance = newBal
+          }
+        }
+        return prevState;
+      })
+    }
+    
+    setCurrUser(prevState => {
+      return {...prevState, "balance":newBal}
     })
+  }
+
+  const updateCurrUser = (username) => {
+    let loggedInUser = userList.filter(user => user.email === username)[0];
+
+    setCurrUser(loggedInUser);
   }
 
   let myValue = {
     saveUserInfo: saveUserHandler,
     users: userList,
-    updateCtxBalance: updateCtxBalance
+    updateCtxBalance: updateCtxBalance,
+    currentUser: currUser,
+    updateCurrUser: updateCurrUser
   }
 
   return (

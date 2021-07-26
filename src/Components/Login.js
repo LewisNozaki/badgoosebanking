@@ -4,22 +4,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useHistory } from 'react-router-dom';
 import DataContext from '../Context/data-context';
 
-const Login = ({ setBalance, userStatus, setUserName, getUsername }) => {
+const Login = ({ updateUserStatus, getUsername }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isValid, setIsValid] = useState(false);
   const [validLogin, setValidLogin] = useState(false);
-  const [userBal, setUserBal] = useState(0);
   
   const ctx = useContext(DataContext);
-  
+
   const history = useHistory();
 
   useEffect(() => {
     for (let i = 0; i < ctx.users.length; i++) {
       if (ctx.users[i].email === username && ctx.users[i].password === password) {
         setValidLogin(true);
-        setUserBal(ctx.users[i].balance);
       }
     }
   }, [username, password, ctx.users])
@@ -47,13 +45,10 @@ const Login = ({ setBalance, userStatus, setUserName, getUsername }) => {
     }
 
     if (validLogin === true) {
-        userStatus();
-        setUserName('Ivy');
-        setValidLogin(true);
-        setBalance(userBal);
-        getUsername(username);
-        alert('Welcome back!')
-        history.push('/')
+      updateUserStatus();
+      ctx.updateCurrUser(username);
+      alert('Welcome back!');
+      history.push('/');
     } else {
       alert('Invalid email or password');
       setUsername('');

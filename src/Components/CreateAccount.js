@@ -5,7 +5,7 @@ import './CreateAccount.css';
 import { Link } from 'react-router-dom';
 import DataContext from '../Context/data-context';
 
-function CreateAccount( props ) {
+function CreateAccount({ updateUserStatus, isUser }) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -15,7 +15,9 @@ function CreateAccount( props ) {
   
   const ctx = useContext(DataContext);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     if (firstName === "") {
       alert("Error: First name field required.");
       return
@@ -41,7 +43,7 @@ function CreateAccount( props ) {
       alert("Error: Password field required.")
       return;
     }
-
+    
     if (isChecked === false) {
       alert("Error: Must agree to Terms & Conditions to create account.")
       return;
@@ -51,8 +53,7 @@ function CreateAccount( props ) {
       alert("Error: Password must contain at least 8 characters.");
       setPassword("");
     } else {
-      props.setUserName(firstName);
-      props.userStatus();
+      updateUserStatus();
       let fullName = firstName + " " + lastName;
       ctx.saveUserInfo(fullName, email, password, 0);
       alert('Success! Your account has been created.');
@@ -83,7 +84,7 @@ function CreateAccount( props ) {
     setIsChecked(true);
     setIsValid(true);
   }
-  
+
   return (
     <div className="create-account">
       <h1 className="join-us">Join the Flock</h1>
@@ -93,7 +94,7 @@ function CreateAccount( props ) {
           className="createacc-form"
           onSubmit={handleSubmit}
         >
-          {props.isUser && 
+          {isUser && 
             <div>
               <p>If you would like to add another account, complete form again.</p> 
             </div>}
@@ -153,15 +154,14 @@ function CreateAccount( props ) {
             <label htmlFor="terms">&nbsp;I agree to the&nbsp;</label>
             {/* <a href="#">Terms & Conditions</a> */}
           </div>
-          
-         <button 
+        
+          <button 
             className="submit-btn"
             type="submit"
             disabled={!isValid}
           >
-            {!props.isUser ? 'Create Account' : 'Add Another Account'}
+            {!isUser ? 'Create Account' : 'Add Another Account'}
           </button>
-
         </form>
         
         <h3>Already have an account?
