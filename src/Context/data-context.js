@@ -29,7 +29,7 @@ export const DataContextProvider = ({ children }) => {
     // let updatedUser = {...userList[0], "balance": bal}
     // setUserList([updatedUser]);
   }
-
+  
   let myValue = {
     saveUserInfo: saveUserHandler,
     users: userList,

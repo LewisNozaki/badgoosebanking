@@ -12,16 +12,14 @@ function App() {
 
   const updateBalance = (num, calc) => {
     if (calc === "ADD") {
-      // setBalance(prevBal => parseInt(prevBal) + parseInt(num));
-      ctx.updateCtxBalance(setBalance(prevBal => parseInt(prevBal) + parseInt(num)));
-    } else if(calc === "MINUS"){
-      // setBalance(prevBal => parseInt(prevBal) - parseInt(num));
-      ctx.updateCtxBalance(setBalance(prevBal => parseInt(prevBal) - parseInt(num)));
+      setBalance(prevBal => parseInt(prevBal) + parseInt(num));
+      ctx.updateCtxBalance(parseInt(balance) + parseInt(num));
+    } else if(calc === "MINUS") {
+      setBalance(prevBal => parseInt(prevBal) - parseInt(num));
+      ctx.updateCtxBalance(parseInt(balance) + parseInt(num));
     }
-
-    // ctx.updateCtxBalance(balance);
   };
-
+  
   const setUserStatus = () => {
     setIsUser(true);
   }
