@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
-import { Form, Button, Card } from 'react-bootstrap';
+import { Form, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './CreateAccount.css';
-import { useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import DataContext from '../Context/data-context';
 
 function CreateAccount( props ) {
@@ -12,14 +12,13 @@ function CreateAccount( props ) {
   const [password, setPassword] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const [isValid, setIsValid] = useState(false);
+  // const [success, setSuccess] = useState(false);
   
   const ctx = useContext(DataContext);
-
-  let history = useHistory();
+  
+  // let history = useHistory();
 
   const handleSubmit = () => {
-    // let pwRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
-
     if (firstName === "" ) {
       alert("Error: First name field required.");
       return
@@ -59,7 +58,8 @@ function CreateAccount( props ) {
       props.userStatus();
       let fullName = firstName + " " + lastName;
       ctx.saveUserInfo(fullName, email, password, 0);
-      history.push("/");
+      alert('Success! Your account has been created.');
+      // history.push("/CreateAccount/");
     }
   }
   
@@ -97,6 +97,10 @@ function CreateAccount( props ) {
           className="createacc-form"
           onSubmit={handleSubmit}
         >
+          {props.isUser && <div>
+            {/* <h2 className="success-msg">Success! Account has been created.</h2> */}
+            <p>If you would like to add another account, complete form again.</p> 
+            </div>}
           <label className="name-label">Name</label>
           <div className="name-input-container">
             <input
@@ -128,7 +132,7 @@ function CreateAccount( props ) {
               autoComplete="off"
             />
             <Form.Text className="email-text">
-              We'll never share your email with anyone else.
+              Emails will be used as your username for Logins.
             </Form.Text>
           </div>
 
@@ -150,18 +154,18 @@ function CreateAccount( props ) {
               onChange={checkbox}
               name="terms"
             />
-            <label for="terms">&nbsp;I agree to the&nbsp;</label>
-            <a href="#">Terms & Conditions</a>
+            <label htmlFor="terms">&nbsp;I agree to the&nbsp;</label>
+            {/* <a href="#">Terms & Conditions</a> */}
           </div>
           
-          <button 
-            className="submit-btn" 
-            variant="primary" 
+         <button 
+            className="submit-btn"
             type="submit"
             disabled={!isValid}
           >
-            Submit
+            {!props.isUser ? 'Create Account' : 'Add Another Account'}
           </button>
+
         </form>
 
         <h3>Already have an account?

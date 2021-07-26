@@ -5,7 +5,6 @@ import Login from './Login';
 import CreateAccount from './CreateAccount';
 import Deposit from './Deposit';
 import Withdraw from './Withdraw';
-import Profile from './Profile';
 import AllData from './AllData';
 import Logo from '../Components/bankLogo.png';
 import "./Navbar.css";
@@ -18,13 +17,14 @@ const Navbar = ({
   userName,
   setUserName,
   updateBalance,
-  setUserStatus }) => {
+  setUserStatus,
+  logout }) => {
   return (
     <HashRouter>
       <div className="nav-bar">
 
         <div className="logo-container">
-          <img src={Logo} className="bank-logo"/>
+          <img src={Logo} className="bank-logo" alt="banking logo" />
           <h1 className="bank-title">
             Goose Banking
           </h1>
@@ -46,9 +46,6 @@ const Navbar = ({
           {isUser && <Link to="/Withdraw/">
             Withdraw
           </Link> }
-          {isUser && <Link to="/Profile/">
-            Profile
-          </Link> }
           <Link to="/AllData/">
             All Data
           </Link>
@@ -58,14 +55,20 @@ const Navbar = ({
         <div className="route-path">
           <Route path="/" exact
             component={() => <Home isUser={isUser} 
-            userName={userName} />}
+            userName={userName}
+            logout={logout}
+            currentBalance={balance} />}
           />
-          <Route path="/Login" exact
-            component={Login}
+          <Route path="/Login/" 
+            component={() => <Login userStatus={setUserStatus} 
+            setUserName={setUserName}
+            setBalance={setBalance}
+            />}
           />
           <Route path="/CreateAccount/" 
             component={() => <CreateAccount userStatus={setUserStatus} 
-            setUserName={setUserName}/>}
+            setUserName={setUserName}
+            isUser={isUser} />}
           />
           <Route path="/Deposit/"
             component={() => <Deposit currentBalance={balance}
@@ -74,9 +77,6 @@ const Navbar = ({
           <Route path="/Withdraw/"      
             component={() => <Withdraw currentBalance={balance}
             updateBalance={updateBalance} />}
-          />
-          <Route path="/Profile/"      
-            component={Profile}
           />
           <Route path="/AllData/" 
             component={AllData}

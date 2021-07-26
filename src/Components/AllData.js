@@ -21,7 +21,7 @@ const AllData = () => {
         <tbody>
         {ctx.users.map(user => {
           return (
-            <tr>
+            <tr key={user.email}>
               <td>{user.name}</td>
               <td>{user.email}</td>
               <td>{user.password}</td>

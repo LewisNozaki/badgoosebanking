@@ -4,7 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Home.css';
 import { Link } from 'react-router-dom';
 
-function Home( props ) {
+function Home ( props ) {
+  const handleLogout = () => {
+    props.logout();
+  }
+
   return (
     <>
       {!props.isUser && <Card className="homepage">
@@ -20,7 +24,9 @@ function Home( props ) {
 
       {props.isUser && <Card className="homepage user-home">
         <h1>Welcome {props.userName}!</h1>
-        <h2>lorem ipsum</h2>
+        <h2>lorem ipsum </h2>
+
+        <h3> Current Account Balance ${props.currentBalance}</h3>
 
         <Link to="/Deposit/">
           <button>
@@ -33,6 +39,16 @@ function Home( props ) {
             Make Withdrawal
           </button>
         </Link>
+
+        <Link to="/CreateAccount/">
+          <button>
+            Add another account
+          </button>
+        </Link>
+
+        <button onClick={handleLogout}>
+            Logout
+        </button>
       </Card>}
     </>
   );
