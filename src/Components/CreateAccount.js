@@ -14,7 +14,7 @@ function CreateAccount({ updateUserStatus, isUser }) {
   const [isValid, setIsValid] = useState(false);
   
   const ctx = useContext(DataContext);
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
 
