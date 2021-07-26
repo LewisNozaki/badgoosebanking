@@ -1,0 +1,51 @@
+.nav-bar {
+  background: #000;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 100px;
+}
+
+.logo-container {
+  display: flex;
+  width: 45%;
+}
+
+.bank-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 4em;
+  left: 150px;
+  text-shadow: 8px 0 #1a5150;
+}
+
+.bank-logo {
+  width: 20%;
+}
+
+.links-container {
+  width: 45%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.route-path {
+  width: 80%;
+  margin: 2em auto;
+}
+
+.links-container a {
+  color: white;
+  font-size: 1.3em;
+  text-decoration: none;
+  padding: 0 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.links-container a:hover,
+.links-container a:focus {
+  transform: scale(1.2);
+  color: aqua;
+}

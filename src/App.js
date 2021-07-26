@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Navbar from './Components/Navbar';
+import "./App.css";
 
 function App() {
+  const [balance, setBalance] = useState(0);
+  const [isUser, setIsUser] = useState(false);
+  const [userName, setUserName] = useState("");
+
+  const updateBalance = (num, calc) => {
+    if (calc === "ADD") {
+      setBalance(prevBal => parseInt(prevBal) + parseInt(num));
+    } else if(calc === "MINUS"){
+      setBalance(prevBal => parseInt(prevBal) - parseInt(num));
+    }
+  };
+
+  const setUserStatus = () => {
+    setIsUser(true);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar 
+        isUser={isUser} 
+        setIsUser={setIsUser}
+        balance={balance}
+        setBalance={setBalance}
+        userName={userName}
+        setUserName={setUserName}
+        updateBalance={updateBalance}
+        setUserStatus={setUserStatus}
+      />
     </div>
   );
 }
