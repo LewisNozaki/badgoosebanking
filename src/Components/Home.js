@@ -11,9 +11,10 @@ function Home ({ isUser, username, balance, logout }) {
   
   return (
     <>
-      {!isUser && <Card className="homepage">
-        <h1>Welcome to Goose Banking</h1>
-        <h2>Here at Goose Banking, we take your money as seriously as geese take on their territory. We offer a wide array of banking services for every  need along with 24/7 customer service. Your growth is our growth so join our flock today!</h2>
+      {!isUser && 
+      <Card className="homepage">
+        <h2>Welcome to Goose Banking</h2>
+        <p>Here at Goose Banking, we take your money as seriously as geese take on their territory. We offer a wide array of banking services for every  need along with 24/7 customer service. Your growth is our growth so join our flock today!</p>
 
         <Link to="/CreateAccount/">
           <button>

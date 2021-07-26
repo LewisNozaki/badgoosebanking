@@ -1,4 +1,34 @@
-/* .homepage {
-  position: absolute;
-  top: 100px;
-} */
+.homepage {
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.homepage h2 {
+  text-align: center;
+  border-bottom: 1px solid gray;
+  padding-bottom: 20px;
+}
+
+.homepage p {
+  font-size: 1.5em;
+}
+
+.homepage a {
+  width: 30%;
+  margin: 20px auto;
+}
+
+.homepage button {
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 10px;
+  background: teal;
+  color: white;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.homepage button:hover,
+.homepage button:focus {
+  color: aquamarine;
+}

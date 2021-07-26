@@ -20,33 +20,34 @@ const Navbar = ({
   return (
     <HashRouter>
       <div className="nav-bar">
-
-        <div className="logo-container">
-          <img src={Logo} className="bank-logo" alt="banking logo" />
-          <h1 className="bank-title">
-            Goose Banking
-          </h1>
-        </div>
-        
-        <div className="links-container">
-          <Link to="/">
-            Home
+        <div className="nav-bar-contents">
+          <Link to="/" className="logo-container">
+            <img src={Logo} className="bank-logo" alt="banking logo" />
+            <h3 className="bank-title">
+              Goose Banking
+            </h3>
           </Link>
-          {!isUser && <Link to="/Login/">
-            Login
-          </Link>}
-          {!isUser && <Link to="/CreateAccount/">
-            Create Account
-          </Link>}
-          {isUser && <Link to="/Deposit/">
-            Deposit
-          </Link>}
-          {isUser && <Link to="/Withdraw/">
-            Withdraw
-          </Link>}
-          <Link to="/AllData/">
-            All Data
-          </Link>
+          
+          <div className="links-container">
+            <Link to="/">
+              Home
+            </Link>
+            {!isUser && <Link to="/Login/">
+              Login
+            </Link>}
+            {!isUser && <Link to="/CreateAccount/">
+              Create Account
+            </Link>}
+            {isUser && <Link to="/Deposit/">
+              Deposit
+            </Link>}
+            {isUser && <Link to="/Withdraw/">
+              Withdraw
+            </Link>}
+            <Link to="/AllData/">
+              All Data
+            </Link>
+          </div>
         </div>
       </div>
 

@@ -14,7 +14,7 @@ function CreateAccount({ updateUserStatus, isUser }) {
   const [isValid, setIsValid] = useState(false);
   
   const ctx = useContext(DataContext);
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -154,7 +154,7 @@ function CreateAccount({ updateUserStatus, isUser }) {
             <label htmlFor="terms">&nbsp;I agree to the&nbsp;</label>
             {/* <a href="#">Terms & Conditions</a> */}
           </div>
-        
+          
           <button 
             className="submit-btn"
             type="submit"
