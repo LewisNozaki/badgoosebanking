@@ -31,7 +31,7 @@ export const DataContextProvider = ({ children }) => {
 
   const updateCtxBalance = (num, calc) => {
     let newBal = 0;
-
+    
     if (calc === "ADD") {
       setUserList(prevState => {
         for (let i = 0; i < prevState.length; i++) {
